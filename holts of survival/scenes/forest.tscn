@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/tilesets/overworld_tileset_grass.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Camera2D.gd" type="Script" id=2]
 
 [sub_resource type="TileSet" id=1]
 resource_local_to_scene = true
@@ -152,3 +153,11 @@ tile_data = PoolIntArray( 0, 10, 0, 1, 10, 0, 2, 10, 0, 3, 10, 0, 4, 10, 0, 5, 1
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 256, 256 )
 current = true
+zoom = Vector2( 0.6, 0.6 )
+limit_left = -240
+limit_top = -220
+limit_right = 750
+limit_bottom = 670
+script = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="Camera2D"]
