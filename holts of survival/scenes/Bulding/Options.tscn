@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://theme/Button_Style.tres" type="StyleBox" id=1]
+[ext_resource path="res://theme/fonts/Main_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://scenes/Bulding/Options.gd" type="Script" id=3]
+
+[node name="Options" type="HBoxContainer"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -85.0
+margin_top = -50.0
+margin_right = 85.0
+alignment = 1
+script = ExtResource( 3 )
+
+[node name="upgrade" type="Button" parent="."]
+margin_right = 103.0
+margin_bottom = 50.0
+mouse_default_cursor_shape = 2
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 1 )
+custom_styles/pressed = ExtResource( 1 )
+custom_styles/disabled = ExtResource( 1 )
+custom_styles/normal = ExtResource( 1 )
+text = "Upgrade"
+
+[node name="move" type="Button" parent="."]
+margin_left = 107.0
+margin_right = 170.0
+margin_bottom = 50.0
+mouse_default_cursor_shape = 2
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 1 )
+custom_styles/pressed = ExtResource( 1 )
+custom_styles/normal = ExtResource( 1 )
+text = "move"
