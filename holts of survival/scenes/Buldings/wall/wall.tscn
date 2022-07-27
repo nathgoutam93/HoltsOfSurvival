@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/Buldings/base_building/base_building.tscn" type="PackedScene" id=1]
+[ext_resource path="res://shaders/pulse2D.tres" type="Shader" id=2]
+[ext_resource path="res://scenes/Buldings/wall/wall.gd" type="Script" id=3]
+[ext_resource path="res://shaders/overlay_shader.tres" type="Shader" id=4]
+[ext_resource path="res://assets/sprites/wall/wall_level_1_left_bottom.png" type="Texture" id=5]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 4 )
+shader_param/color = Color( 0, 1, 0, 1 )
+shader_param/overlay = false
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/pulsing = false
+
+[node name="Building" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="Tile" parent="." index="1"]
+material = SubResource( 1 )
+
+[node name="Sprite" parent="." index="3"]
+material = SubResource( 2 )
+position = Vector2( -32, -26 )
+texture = ExtResource( 5 )
+
+[node name="ray_top" type="RayCast2D" parent="." index="4"]
+position = Vector2( 0, 18 )
+rotation = 2.18166
+cast_to = Vector2( 0, 30 )
+collide_with_areas = true
+
+[node name="ray_right" type="RayCast2D" parent="." index="5"]
+position = Vector2( 0, 18 )
+rotation = 4.01426
+enabled = true
+cast_to = Vector2( 0, 30 )
+collide_with_areas = true
+
+[node name="ray_bottom" type="RayCast2D" parent="." index="6"]
+position = Vector2( 0, 18 )
+rotation = 5.23599
+enabled = true
+cast_to = Vector2( 0, 30 )
+collide_with_areas = true
+
+[node name="ray_left" type="RayCast2D" parent="." index="7"]
+position = Vector2( 0, 18 )
+rotation = 1.0472
+enabled = true
+cast_to = Vector2( 0, 30 )
+collide_with_areas = true
+
+[editable path="Options"]

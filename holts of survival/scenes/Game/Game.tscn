@@ -1,165 +1,39 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://scenes/Grid/grid.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/Game/Camera2D.gd" type="Script" id=2]
-[ext_resource path="res://scenes/Game/Game.gd" type="Script" id=3]
-[ext_resource path="res://assets/tilesets/overworld_tileset_grass.png" type="Texture" id=5]
-[ext_resource path="res://assets/sprites/forest.png" type="Texture" id=7]
+[ext_resource path="res://scenes/Forest/forest.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Interface/HUD/Hud.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Game/Camera2D.gd" type="Script" id=3]
+[ext_resource path="res://scenes/Game/Game.gd" type="Script" id=4]
+[ext_resource path="res://scenes/Ground/ground.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/sounds/forest_ambiance.mp3" type="AudioStream" id=6]
 
-[sub_resource type="TileSet" id=3]
-resource_local_to_scene = true
-8/name = "overworld_tileset_grass.png 8"
-8/texture = ExtResource( 5 )
-8/tex_offset = Vector2( 0, 0 )
-8/modulate = Color( 1, 1, 1, 1 )
-8/region = Rect2( 144, 64, 48, 80 )
-8/tile_mode = 1
-8/autotile/bitmask_mode = 1
-8/autotile/bitmask_flags = [ Vector2( 0, 0 ), 432, Vector2( 0, 1 ), 438, Vector2( 0, 2 ), 54, Vector2( 0, 3 ), 255, Vector2( 0, 4 ), 507, Vector2( 1, 0 ), 504, Vector2( 1, 1 ), 511, Vector2( 1, 2 ), 63, Vector2( 1, 3 ), 447, Vector2( 1, 4 ), 510, Vector2( 2, 0 ), 216, Vector2( 2, 1 ), 219, Vector2( 2, 2 ), 27 ]
-8/autotile/icon_coordinate = Vector2( 0, 0 )
-8/autotile/tile_size = Vector2( 16, 16 )
-8/autotile/spacing = 0
-8/autotile/occluder_map = [  ]
-8/autotile/navpoly_map = [  ]
-8/autotile/priority_map = [  ]
-8/autotile/z_index_map = [  ]
-8/occluder_offset = Vector2( 0, 0 )
-8/navigation_offset = Vector2( 0, 0 )
-8/shape_offset = Vector2( 0, 0 )
-8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-8/shape_one_way = false
-8/shape_one_way_margin = 0.0
-8/shapes = [  ]
-8/z_index = 0
-10/name = "overworld_tileset_grass.png 10"
-10/texture = ExtResource( 5 )
-10/tex_offset = Vector2( 0, 0 )
-10/modulate = Color( 1, 1, 1, 1 )
-10/region = Rect2( 0, 0, 16, 16 )
-10/tile_mode = 0
-10/occluder_offset = Vector2( 0, 0 )
-10/navigation_offset = Vector2( 0, 0 )
-10/shape_offset = Vector2( 0, 0 )
-10/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-10/shape_one_way = false
-10/shape_one_way_margin = 0.0
-10/shapes = [  ]
-10/z_index = 0
-11/name = "overworld_tileset_grass.png 11"
-11/texture = ExtResource( 5 )
-11/tex_offset = Vector2( 0, 0 )
-11/modulate = Color( 1, 1, 1, 1 )
-11/region = Rect2( 48, 16, 16, 16 )
-11/tile_mode = 0
-11/occluder_offset = Vector2( 0, 0 )
-11/navigation_offset = Vector2( 0, 0 )
-11/shape_offset = Vector2( 0, 0 )
-11/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-11/shape_one_way = false
-11/shape_one_way_margin = 0.0
-11/shapes = [  ]
-11/z_index = 0
-12/name = "overworld_tileset_grass.png 12"
-12/texture = ExtResource( 5 )
-12/tex_offset = Vector2( 0, 0 )
-12/modulate = Color( 1, 1, 1, 1 )
-12/region = Rect2( 48, 32, 16, 16 )
-12/tile_mode = 0
-12/occluder_offset = Vector2( 0, 0 )
-12/navigation_offset = Vector2( 0, 0 )
-12/shape_offset = Vector2( 0, 0 )
-12/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-12/shape_one_way = false
-12/shape_one_way_margin = 0.0
-12/shapes = [  ]
-12/z_index = 0
-13/name = "overworld_tileset_grass.png 13"
-13/texture = ExtResource( 5 )
-13/tex_offset = Vector2( 0, 0 )
-13/modulate = Color( 1, 1, 1, 1 )
-13/region = Rect2( 176, 112, 16, 16 )
-13/tile_mode = 0
-13/occluder_offset = Vector2( 0, 0 )
-13/navigation_offset = Vector2( 0, 0 )
-13/shape_offset = Vector2( 0, 0 )
-13/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-13/shape_one_way = false
-13/shape_one_way_margin = 0.0
-13/shapes = [  ]
-13/z_index = 0
-14/name = "overworld_tileset_grass.png 14"
-14/texture = ExtResource( 5 )
-14/tex_offset = Vector2( 0, 0 )
-14/modulate = Color( 1, 1, 1, 1 )
-14/region = Rect2( 16, 0, 16, 16 )
-14/tile_mode = 0
-14/occluder_offset = Vector2( 0, 0 )
-14/navigation_offset = Vector2( 0, 0 )
-14/shape_offset = Vector2( 0, 0 )
-14/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-14/shape_one_way = false
-14/shape_one_way_margin = 0.0
-14/shapes = [  ]
-14/z_index = 0
-15/name = "overworld_tileset_grass.png 15"
-15/texture = ExtResource( 5 )
-15/tex_offset = Vector2( 0, 0 )
-15/modulate = Color( 1, 1, 1, 1 )
-15/region = Rect2( 32, 0, 16, 16 )
-15/tile_mode = 0
-15/occluder_offset = Vector2( 0, 0 )
-15/navigation_offset = Vector2( 0, 0 )
-15/shape_offset = Vector2( 0, 0 )
-15/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-15/shape_one_way = false
-15/shape_one_way_margin = 0.0
-15/shapes = [  ]
-15/z_index = 0
-16/name = "overworld_tileset_grass.png 16"
-16/texture = ExtResource( 5 )
-16/tex_offset = Vector2( 0, 0 )
-16/modulate = Color( 1, 1, 1, 1 )
-16/region = Rect2( 96, 64, 48, 48 )
-16/tile_mode = 2
-16/autotile/icon_coordinate = Vector2( 0, 0 )
-16/autotile/tile_size = Vector2( 16, 16 )
-16/autotile/spacing = 0
-16/autotile/occluder_map = [  ]
-16/autotile/navpoly_map = [  ]
-16/autotile/priority_map = [  ]
-16/autotile/z_index_map = [  ]
-16/occluder_offset = Vector2( 0, 0 )
-16/navigation_offset = Vector2( 0, 0 )
-16/shape_offset = Vector2( 0, 0 )
-16/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-16/shape_one_way = false
-16/shape_one_way_margin = 0.0
-16/shapes = [  ]
-16/z_index = 0
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 4 )
 
-[node name="World" type="Node2D"]
-script = ExtResource( 3 )
+[node name="HUD" parent="." instance=ExtResource( 2 )]
 
-[node name="Control" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="ground" parent="." instance=ExtResource( 5 )]
+tile_data = PoolIntArray( -2556023, 3, 0, -2555944, 3, 0, 720827, 0, 0, 2621321, 3, 0, 2621400, 3, 0 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 256, 256 )
-scale = Vector2( 1.4, 1.4 )
-texture = ExtResource( 7 )
+[node name="forest" parent="." instance=ExtResource( 1 )]
+tile_data = PoolIntArray( -2359291, 0, 0, -2228208, 0, 0, -2097153, 4, 0, -2097125, 4, 0, -1900511, 4, 0, -1835002, 4, 0, -1703940, 4, 0, -1769457, 1, 0, -1769431, 4, 0, -1572879, 4, 0, -1638400, 1, 0, -1572864, 0, 0, -1572845, 2, 0, -1572839, 4, 0, -1441800, 4, 0, -1376244, 0, 0, -1376226, 3, 0, -1310680, 4, 0, -1245138, 4, 0, -1048598, 0, 0, -983068, 4, 0, -917515, 0, 0, -917505, 0, 0, -983033, 3, 0, -983022, 4, 0, -983016, 0, 0, -851923, 4, 0, -786397, 3, 0, -786381, 4, 0, -589858, 4, 0, -524309, 4, 0, -458779, 4, 0, -393175, 0, 0, -393159, 1, 0, -327631, 4, 0, -327629, 4, 0, -196642, 2, 0, -262083, 4, 0, -65563, 3, 0, 46, 4, 0, 65587, 0, 0, 131131, 4, 0, 262110, 4, 0, 327652, 4, 0, 524249, 4, 0, 524268, 4, 0, 458808, 4, 0, 655327, 2, 0, 720871, 4, 0, 655404, 3, 0, 786485, 4, 0, 786491, 0, 0, 982999, 0, 0, 1048557, 4, 0, 1114068, 4, 0, 1048645, 2, 0, 1114156, 4, 0, 1245154, 4, 0, 1245238, 4, 0, 1507291, 0, 0, 1507302, 3, 0, 1507389, 0, 0, 1572907, 0, 0, 1572934, 1, 0, 1703991, 4, 0, 1834978, 4, 0, 1966057, 0, 0, 2031687, 2, 0, 2097195, 0, 0, 2228285, 0, 0, 2359267, 4, 0, 2293811, 3, 0, 2621420, 4, 0, 2818091, 0, 0, 2949174, 4, 0, 2949179, 0, 0, 3342381, 4, 0, 3538996, 4, 0, 3604540, 4, 0 )
 
-[node name="grid" parent="." instance=ExtResource( 1 )]
-tile_set = SubResource( 3 )
+[node name="YSort" type="YSort" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 256, 256 )
 current = true
-limit_left = -245
-limit_top = -245
-limit_right = 755
-limit_bottom = 755
+limit_left = -1600
+limit_top = -400
+limit_right = 1800
+limit_bottom = 1600
 editor_draw_limits = true
-script = ExtResource( 2 )
+script = ExtResource( 3 )
+min_zoom = 0.5
+max_zoom = 2.0
 
 [node name="Tween" type="Tween" parent="Camera2D"]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+autoplay = true

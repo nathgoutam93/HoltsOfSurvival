@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Interface/HUD/Hud.gd" type="Script" id=1]
+[ext_resource path="res://Interface/ResourceCounters/oil_counter/oil_counter.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Interface/ResourceCounters/gold_counter/gold_counter.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Interface/Shop/shop.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/sprites/UI/Btn01.png" type="Texture" id=5]
+[ext_resource path="res://theme/fonts/Main_font.tres" type="DynamicFont" id=6]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -23.0
+margin_top = 20.0
+margin_right = 23.0
+margin_bottom = 34.0
+text = "FPS: 60"
+
+[node name="resources" type="VBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -321.0
+margin_top = 23.0
+margin_right = -21.0
+margin_bottom = 187.0
+
+[node name="gold_counter" parent="resources" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 300.0
+margin_bottom = 80.0
+
+[node name="oil_couter" parent="resources" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 84.0
+margin_right = 300.0
+margin_bottom = 164.0
+
+[node name="shop_button" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -124.0
+margin_top = -116.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+texture_disabled = ExtResource( 5 )
+texture_focused = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="shop_button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 13.0
+margin_top = 9.0
+margin_right = -12.0
+margin_bottom = -10.0
+custom_fonts/font = ExtResource( 6 )
+text = "SHOP"
+align = 1
+valign = 1
+
+[node name="shop" parent="." instance=ExtResource( 4 )]
+visible = false

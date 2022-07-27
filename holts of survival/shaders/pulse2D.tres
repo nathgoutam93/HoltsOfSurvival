@@ -1,0 +1,15 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
+
+uniform bool pulsing = false;
+
+void fragment() {
+	
+	COLOR = texture(TEXTURE, UV);
+	
+	if (pulsing && COLOR.a > 0.0) {
+		COLOR.rgb -= clamp(sin(TIME * 2.0) * 0.2, 0.0, 1.0) ; 
+	}
+}"

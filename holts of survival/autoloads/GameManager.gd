@@ -1,5 +1,7 @@
 extends Node
 
+var game = null
+var hud = null
 var player = null setget _set_player
 
 const ws_url = "ws://localhost:3000/api/"
@@ -8,9 +10,8 @@ var ws_listners = {}
 
 func _process(delta):
 	ws_client.poll()
-	
+
 func _init_socket(access_token: String) -> void:
-	
 	if not is_processing():
 		set_process(true)
 	
@@ -31,20 +32,20 @@ func _init_player(value: Dictionary) -> void:
 	player_instance.name = value.username
 	player_instance.xp = value.xp
 	player_instance.trophy = value.trophy
+	player_instance.townhall = value.townhall
+	player_instance.buildings = parse_json(value.buildings) as Dictionary
 	player_instance.gold = value.gold
-	player_instance.elixer = value.elixer
-	player_instance.buildings = parse_json(value.buildings) as Array
+	player_instance.oil = value.oil
 
 	_set_player(player_instance)
+	
+#	get_tree().change_scene("res://scenes/Game/Game.tscn")
 
 func _set_player(value : Player) -> void:
-	
 	if value is Player:
 		player = value
 	else:
 		return
-		
-	get_tree().change_scene("res://scenes/Game/Game.tscn")
 
 ##########################
 ######## WebSocket #######
@@ -59,10 +60,10 @@ func ws_emit(event: String , data = {} ) -> void:
 		"data": data
 	}).to_utf8())
 
-func ws_listen(event: String, callback: FuncRef):
+func ws_listen(event: String, callback: FuncRef) -> void:
 	ws_listners[event] = callback
 
-func _connected(proto = ""):
+func _connected(proto := "") -> void:
 	print("Connected with protocol: ", proto)
 	
 	ws_listen("player", funcref(self, "_init_player"))
@@ -71,12 +72,12 @@ func _connected(proto = ""):
 	
 	ws_emit("player")
 
-func _on_data():
+func _on_data() -> void:
 	var data = ws_get()
 	
 	ws_listners[data.event].call_func(data.data)
 
-func _closed(was_clean = false):
+func _closed(was_clean = false) -> void:
 	print("Closed, clean: ", was_clean)
 	set_process(false)
 	
@@ -90,7 +91,7 @@ func _closed(was_clean = false):
 	alert.set_autowrap(true)
 	alert.connect("confirmed", self, "_restart")
 	alert.connect("modal_closed", self, "_restart")
-	HUD.add_child(alert)
+	add_child(alert)
 	alert.popup_centered()
 
 func _restart():

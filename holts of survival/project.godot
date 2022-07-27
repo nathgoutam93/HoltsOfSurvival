@@ -21,20 +21,22 @@ _global_script_class_icons={
 [application]
 
 config/name="holts of survival"
-run/main_scene="res://scenes/SplashScreen/SplashScreen.tscn"
+run/main_scene="res://scenes/Game/Game.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Auth="*res://autoloads/Auth.gd"
 Constants="*res://autoloads/Constants.gd"
+Uuid="*res://autoloads/uuid.gd"
+Auth="*res://autoloads/Auth.gd"
+TimeManager="*res://autoloads/TimeManager.gd"
 GameManager="*res://autoloads/GameManager.gd"
-HUD="*res://autoloads/HUD/Hud.tscn"
 
 [display]
 
 window/size/width=1280
 window/size/height=720
+window/size/resizable=false
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
 

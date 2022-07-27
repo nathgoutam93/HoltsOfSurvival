@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://theme/fonts/Main_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Interface/ShowMessage/show_message.gd" type="Script" id=2]
+
+[node name="message" type="Label"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -248.5
+margin_top = 150.0
+margin_right = 248.5
+margin_bottom = 190.0
+custom_fonts/font = ExtResource( 1 )
+text = "Built maximum numbers allowed"
+align = 1
+valign = 1
+script = ExtResource( 2 )

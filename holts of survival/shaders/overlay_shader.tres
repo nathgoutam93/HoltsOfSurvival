@@ -1,0 +1,17 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
+
+uniform vec4 color : hint_color = vec4(1.0);
+uniform bool overlay = false;
+
+void fragment(){
+	
+	COLOR.a = 0.0;
+	
+	if(overlay){
+		COLOR.rgb = color.rgb;
+		COLOR.a = texture(TEXTURE,UV).a;
+	}
+}"

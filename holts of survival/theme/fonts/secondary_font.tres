@@ -1,0 +1,10 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[ext_resource path="res://theme/fonts/FredokaOne-Regular.ttf" type="DynamicFontData" id=1]
+
+[resource]
+resource_local_to_scene = true
+size = 28
+outline_size = 1
+outline_color = Color( 0.184314, 0.388235, 0.819608, 1 )
+font_data = ExtResource( 1 )
