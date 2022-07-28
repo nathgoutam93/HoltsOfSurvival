@@ -3,19 +3,17 @@ import express, { json } from "express";
 import { createServer } from "http";
 import { WebSocketServer } from "ws";
 import { authenticateToken } from "./middleware/authenticateToken.js";
-import { PrismaClient } from "@prisma/client";
 import { router } from "./routes/api.route.js";
+import { getPlayerById } from "./prisma_utils.js";
 
 const PORT = process.env.PORT;
 
 const app = express();
-app.use(express.json());
+app.use(json());
 
 const server = createServer(app);
 
 app.use("/api", router);
-
-const prisma = new PrismaClient();
 
 const wss = new WebSocketServer({
   verifyClient: function ({ req }, res) {
@@ -23,16 +21,6 @@ const wss = new WebSocketServer({
   },
   server,
 });
-
-async function getPlayerById(id) {
-  const player = await prisma.player.findUnique({
-    where: {
-      id: id,
-    },
-  });
-
-  return player;
-}
 
 wss.on("connection", function connection(ws, req) {
   ws.on("message", async function message(received_data) {

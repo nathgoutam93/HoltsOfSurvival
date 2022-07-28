@@ -1,9 +1,12 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Router } from "express";
-import { PrismaClient } from "@prisma/client";
+import {
+  getUserByUsername,
+  createNewUser,
+  createNewPlayer,
+} from "./prisma_utils.js";
 
-const prisma = new PrismaClient();
 export const router = Router();
 
 router.get("/", async (req, res) => {
@@ -12,29 +15,9 @@ router.get("/", async (req, res) => {
   });
 });
 
-// router.get("/getUser", authenticateToken, async (req, res, next) => {
-//   try {
-//     const user = await prisma.user.findUnique({
-//       where: {
-//         id: req.user,
-//       },
-//     });
-
-//     res.json({
-//       data: user,
-//     });
-//   } catch (error) {
-//     next(error);
-//   }
-// });
-
 router.post("/signup", async (req, res, next) => {
   try {
-    const user = await prisma.user.findUnique({
-      where: {
-        username: req.body.username,
-      },
-    });
+    const user = await getUserByUsername(req.body.username);
 
     if (user != null) {
       const error = new Error("Username already taken");
@@ -44,29 +27,9 @@ router.post("/signup", async (req, res, next) => {
 
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-    const new_user = await prisma.user.create({
-      data: {
-        username: req.body.username,
-        password: hashedPassword,
-      },
-    });
+    const new_user = await createNewUser(req.body.username, hashedPassword);
 
-    await prisma.player.create({
-      data: {
-        id: new_user.id,
-        username: new_user.username,
-        xp: 0,
-        trophy: 0,
-        townhall: 1,
-        gold: 1000,
-        oil: 1000,
-        buildings: JSON.stringify([
-          { class: 0, level: 1, pos: { x: 256, y: 256 } },
-          { class: 1, level: 1, pos: { x: 256, y: 240 } },
-          { class: 2, level: 1, pos: { x: 240, y: 256 } },
-        ]),
-      },
-    });
+    await createNewPlayer(new_user.id, new_user.username);
 
     res.json({
       data: "Success",
@@ -78,11 +41,7 @@ router.post("/signup", async (req, res, next) => {
 
 router.post("/signin", async (req, res, next) => {
   try {
-    const user = await prisma.user.findUnique({
-      where: {
-        username: req.body.username,
-      },
-    });
+    const user = await getUserByUsername(req.body.username);
 
     if (user == null) {
       const error = new Error("User not found");
