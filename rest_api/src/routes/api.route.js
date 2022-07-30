@@ -5,7 +5,7 @@ import {
   getUserByUsername,
   createNewUser,
   createNewPlayer,
-} from "./prisma_utils.js";
+} from "../prisma_utils.js";
 
 export const router = Router();
 

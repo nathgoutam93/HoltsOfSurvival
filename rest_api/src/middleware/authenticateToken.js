@@ -12,3 +12,13 @@ export function authenticateToken(req, res) {
     res(true);
   });
 }
+
+export function Authenticate(token, req) {
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (error, user) => {
+    if (error) return false;
+
+    req.user = user;
+  });
+
+  return true;
+}

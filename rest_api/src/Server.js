@@ -1,14 +1,19 @@
 import "dotenv/config";
 import express, { json } from "express";
 import { createServer } from "http";
+import cors from "cors";
 import { WebSocketServer } from "ws";
-import { authenticateToken } from "./middleware/authenticateToken.js";
+import {
+  Authenticate,
+  authenticateToken,
+} from "./middleware/authenticateToken.js";
 import { router } from "./routes/api.route.js";
-import { getPlayerById } from "./prisma_utils.js";
+import { getPlayerById, updatePlayerbyId } from "./prisma_utils.js";
 
 const PORT = process.env.PORT;
 
 const app = express();
+app.use(cors());
 app.use(json());
 
 const server = createServer(app);
@@ -16,9 +21,9 @@ const server = createServer(app);
 app.use("/api", router);
 
 const wss = new WebSocketServer({
-  verifyClient: function ({ req }, res) {
-    authenticateToken(req, res);
-  },
+  // verifyClient: function ({ req }, res) {
+  //   authenticateToken(req, res);
+  // },
   server,
 });
 
@@ -27,7 +32,13 @@ wss.on("connection", function connection(ws, req) {
     const { event, data } = JSON.parse(received_data);
 
     switch (event) {
-      case "player":
+      case "update":
+        updatePlayerbyId(req.user, data);
+        break;
+      case "Authenticate":
+        const authenticated = Authenticate(data.authorization, req);
+        if (!authenticated) return ws.close();
+
         const player = await getPlayerById(req.user);
         ws.send(
           JSON.stringify({
@@ -38,12 +49,18 @@ wss.on("connection", function connection(ws, req) {
         break;
       case "message":
         console.log(data);
+        break;
       default:
         break;
     }
   });
 
-  console.log(`${req.user} connected`);
+  ws.send(
+    JSON.stringify({
+      event: "Authenticate",
+      data: "",
+    })
+  );
 
   ws.on("close", (code, reason) => {
     console.log(`${req.user} dissconnected, reason: ${code}`);

@@ -25,7 +25,7 @@ model Player {
   xp        Int    @default(0)
   trophy    Int    @default(0)
   townhall  Int    @default(1)
-  gold      Int    @default(0)
-  oil       Int    @default(0)
+  wood      Int    @default(0)
+  stone     Int    @default(0)
   buildings Json
 }
