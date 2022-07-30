@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://theme/fonts/Main_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Interface/BuildingOptions/base_option/Options.tscn" type="PackedScene" id=2]
+[ext_resource path="res://theme/Button_Style.tres" type="StyleBox" id=3]
+[ext_resource path="res://assets/sprites/icons/icons8-grab-48.png" type="Texture" id=4]
+[ext_resource path="res://Interface/BuildingOptions/resource_option/resource_option.gd" type="Script" id=5]
+
+[node name="Options" instance=ExtResource( 2 )]
+script = ExtResource( 5 )
+
+[node name="info" parent="Options" index="0"]
+margin_left = 391.0
+margin_right = 511.0
+
+[node name="upgrade" parent="Options" index="1"]
+margin_left = 515.0
+margin_right = 719.0
+
+[node name="collect" type="Button" parent="Options" index="2"]
+margin_left = 723.0
+margin_right = 888.0
+margin_bottom = 74.0
+mouse_default_cursor_shape = 2
+custom_fonts/font = ExtResource( 1 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = ExtResource( 3 )
+custom_styles/disabled = ExtResource( 3 )
+custom_styles/normal = ExtResource( 3 )
+text = "collect"
+icon = ExtResource( 4 )

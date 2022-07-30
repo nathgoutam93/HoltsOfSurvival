@@ -1,14 +1,14 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/Buldings/base_building/base_building.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Buldings/resource_building/resource_building.gd" type="Script" id=2]
 [ext_resource path="res://shaders/overlay_shader.tres" type="Shader" id=3]
-[ext_resource path="res://Interface/BuildingOptions/resource_option/resource_option.gd" type="Script" id=4]
-[ext_resource path="res://theme/Button_Style.tres" type="StyleBox" id=5]
-[ext_resource path="res://theme/fonts/Main_font.tres" type="DynamicFont" id=6]
-[ext_resource path="res://assets/sprites/icons/icons8-grab-48.png" type="Texture" id=8]
-[ext_resource path="res://assets/sprites/oil_collector/oil_mine_level_1.png" type="Texture" id=9]
+[ext_resource path="res://Interface/BuildingOptions/resource_option/resource_options.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/sprites/stone_mine/stone_mine_level_1.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/icons/stone_bubble_64.png" type="Texture" id=6]
+[ext_resource path="res://shaders/pulse2D.tres" type="Shader" id=7]
 [ext_resource path="res://tilesets/tile_128.png" type="Texture" id=10]
+[ext_resource path="res://Interface/ResourceNotify/resource_notify.tscn" type="PackedScene" id=11]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -16,48 +16,34 @@ shader = ExtResource( 3 )
 shader_param/color = Color( 0, 1, 0, 1 )
 shader_param/overlay = false
 
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 7 )
+shader_param/pulsing = false
+
 [node name="Building" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+Options = ExtResource( 4 )
 _tiles = 2
 
-[node name="Options" parent="." index="0"]
-script = ExtResource( 4 )
-
-[node name="info" parent="Options/Options" index="0"]
-margin_left = 351.0
-margin_right = 457.0
-
-[node name="upgrade" parent="Options/Options" index="1"]
-margin_left = 461.0
-margin_right = 640.0
-
-[node name="collect" type="Button" parent="Options/Options" index="2"]
-margin_left = 644.0
-margin_right = 786.0
-margin_bottom = 74.0
-mouse_default_cursor_shape = 2
-custom_fonts/font = ExtResource( 6 )
-custom_styles/hover = ExtResource( 5 )
-custom_styles/pressed = ExtResource( 5 )
-custom_styles/normal = ExtResource( 5 )
-text = "collect"
-icon = ExtResource( 8 )
-
-[node name="move" parent="Options/Options" index="3"]
-margin_left = 790.0
-margin_right = 929.0
-
-[node name="Tile" parent="." index="1"]
+[node name="Tile" parent="." index="0"]
 material = SubResource( 1 )
 position = Vector2( -64, 0 )
 texture = ExtResource( 10 )
 
-[node name="CollisionPolygon2D" parent="." index="2"]
+[node name="CollisionPolygon2D" parent="." index="1"]
 position = Vector2( -64, 0 )
-polygon = PoolVector2Array( 64, 4, 4, 32, 64, 60, 124, 32 )
+polygon = PoolVector2Array( 96, 6, 6, 48, 96, 90, 186, 48 )
 
-[node name="Sprite" parent="." index="3"]
-position = Vector2( -68, -59 )
-texture = ExtResource( 9 )
+[node name="Sprite" parent="." index="2"]
+material = SubResource( 2 )
+position = Vector2( -60, -74 )
+texture = ExtResource( 5 )
 
-[editable path="Options"]
+[node name="Timer" type="Timer" parent="." index="5"]
+
+[node name="notify" parent="." index="6" instance=ExtResource( 11 )]
+visible = false
+margin_top = -114.0
+margin_bottom = -50.0
+texture = ExtResource( 6 )

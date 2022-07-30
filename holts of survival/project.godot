@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="holts of survival"
-run/main_scene="res://scenes/Game/Game.tscn"
+run/main_scene="res://scenes/SplashScreen/SplashScreen.tscn"
 config/icon="res://icon.png"
 
 [autoload]

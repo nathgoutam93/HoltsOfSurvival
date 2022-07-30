@@ -10,29 +10,29 @@ var adj_walls = {
 func _ready():
 	add_to_group("walls")
 	if is_selectable:
-		_set_adj_walls()
+		set_adj_walls()
 
-func _enable_edit_mode():
-	._enable_edit_mode()
+func enable_edit_mode():
+	.enable_edit_mode()
 	if is_selectable:
-		_reset_adj_walls()
+		reset_adj_walls()
 
-func _edit_complete():
-	._edit_complete()
+func edit_complete():
+	.edit_complete()
 	if is_selectable:
-		_set_adj_walls()
+		set_adj_walls()
 
-func _edit_cancle():
-	._edit_cancle()
-	_set_adj_walls()
+func edit_cancle():
+	.edit_cancle()
+	set_adj_walls()
 	
-func _enable_rays(value: bool):
+func enable_rays(value: bool):
 	$ray_top.set_enabled(value)
 	$ray_right.set_enabled(value)
 	$ray_left.set_enabled(value)
 	$ray_bottom.set_enabled(value)
 
-func _set_sprite():
+func set_sprite():
 	
 	if adj_walls.left && adj_walls.bottom:
 		$Sprite.texture = load(Constants.Buildings[Constants.Building.WALL][_level].sprites.left_bottom)
@@ -43,9 +43,9 @@ func _set_sprite():
 	else:
 		$Sprite.texture = load(Constants.Buildings[Constants.Building.WALL][_level].sprites.idle)
 
-func _set_adj_walls():
-	_enable_rays(true)
-	
+func set_adj_walls():
+	enable_rays(true)
+
 	yield(get_tree().create_timer(0.1),"timeout")
 	
 	adj_walls.top = cast($ray_top)
@@ -55,26 +55,26 @@ func _set_adj_walls():
 
 	if adj_walls.top:
 		adj_walls.top.adj_walls.bottom = self
-		adj_walls.top._set_sprite()
+		adj_walls.top.set_sprite()
 	if adj_walls.right:
 		adj_walls.right.adj_walls.left = self
-		adj_walls.right._set_sprite()
+		adj_walls.right.set_sprite()
 	if adj_walls.left:
 		adj_walls.left.adj_walls.right = self
 	if adj_walls.bottom:
 		adj_walls.bottom.adj_walls.top = self
 	
-	_set_sprite()
-	_enable_rays(false)
+	set_sprite()
+	enable_rays(false)
 
-func _reset_adj_walls():
+func reset_adj_walls():
 	if adj_walls.top:
 		adj_walls.top.adj_walls.bottom = null
-		adj_walls.top._set_sprite()
+		adj_walls.top.set_sprite()
 		adj_walls.top = null
 	if adj_walls.right:
 		adj_walls.right.adj_walls.left = null
-		adj_walls.right._set_sprite()
+		adj_walls.right.set_sprite()
 		adj_walls.right = null
 	if adj_walls.left:
 		adj_walls.left.adj_walls.right = null
@@ -83,7 +83,7 @@ func _reset_adj_walls():
 		adj_walls.bottom.adj_walls.top = null
 		adj_walls.bottom = null
 	
-	_set_sprite()
+	set_sprite()
 
 func cast(ray : RayCast2D):
 	if ray.is_colliding() && ray.get_collider().is_in_group("walls"):

@@ -1,22 +1,17 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://theme/fonts/Main_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Interface/Shop/ShopButton/shop_button.gd" type="Script" id=2]
-[ext_resource path="res://assets/sprites/wall/wall_level_1_idle.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/wood_mill/wood_mill_icon.png" type="Texture" id=3]
 [ext_resource path="res://theme/fonts/secondary_font.tres" type="DynamicFont" id=4]
 [ext_resource path="res://assets/sprites/item_card_bg.png" type="Texture" id=5]
-[ext_resource path="res://assets/sprites/icons/icons8-gold-64.png" type="Texture" id=6]
-[ext_resource path="res://theme/fonts/FredokaOne-Regular.ttf" type="DynamicFontData" id=7]
-
-[sub_resource type="DynamicFont" id=1]
-size = 20
-outline_size = 1
-font_data = ExtResource( 7 )
+[ext_resource path="res://assets/sprites/icons/gold.png" type="Texture" id=6]
+[ext_resource path="res://theme/fonts/Main_font_24.tres" type="DynamicFont" id=7]
 
 [node name="shop_button" type="TextureButton"]
-margin_right = 150.0
-margin_bottom = 172.0
-rect_min_size = Vector2( 200, 200 )
+margin_right = 250.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 250, 250 )
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 5 )
@@ -32,7 +27,7 @@ anchor_bottom = 1.0
 rect_min_size = Vector2( 150, 150 )
 
 [node name="building_name" type="Label" parent="VBoxContainer"]
-margin_right = 200.0
+margin_right = 250.0
 margin_bottom = 35.0
 custom_fonts/font = ExtResource( 4 )
 text = "Gold Mine"
@@ -42,8 +37,8 @@ autowrap = true
 
 [node name="building_icon" type="TextureRect" parent="VBoxContainer"]
 margin_top = 39.0
-margin_right = 200.0
-margin_bottom = 132.0
+margin_right = 250.0
+margin_bottom = 182.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 3 )
@@ -54,25 +49,25 @@ margin_left = 11.0
 margin_top = 8.0
 margin_right = 51.0
 margin_bottom = 22.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 7 )
 text = "2/2"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 136.0
-margin_right = 200.0
-margin_bottom = 200.0
+margin_top = 186.0
+margin_right = 250.0
+margin_bottom = 250.0
 alignment = 1
 
 [node name="cost_resource" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
-margin_left = 31.0
-margin_right = 95.0
+margin_left = 56.0
+margin_right = 120.0
 margin_bottom = 64.0
 texture = ExtResource( 6 )
 
 [node name="cost_amount" type="Label" parent="VBoxContainer/HBoxContainer"]
-margin_left = 99.0
+margin_left = 124.0
 margin_top = 12.0
-margin_right = 169.0
+margin_right = 194.0
 margin_bottom = 52.0
 custom_fonts/font = ExtResource( 1 )
 text = "1000"

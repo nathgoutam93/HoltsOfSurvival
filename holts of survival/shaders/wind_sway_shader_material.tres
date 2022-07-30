@@ -3,13 +3,14 @@
 [ext_resource path="res://shaders/wind_sway.gdshader" type="Shader" id=1]
 
 [resource]
+resource_local_to_scene = true
 shader = ExtResource( 1 )
-shader_param/speed = 1.0
-shader_param/minStrength = 0.08
-shader_param/maxStrength = 0.02
+shader_param/speed = 2.0
+shader_param/minStrength = 0.706
+shader_param/maxStrength = 0.677
 shader_param/strengthScale = 100.0
-shader_param/interval = 3.0
-shader_param/detail = 1.0
-shader_param/distortion = 0.5
-shader_param/heightOffset = 0.5
-shader_param/offset = 2.0
+shader_param/interval = 3.5
+shader_param/detail = 3.0
+shader_param/distortion = 0.0
+shader_param/heightOffset = 0.95
+shader_param/offset = 0.0

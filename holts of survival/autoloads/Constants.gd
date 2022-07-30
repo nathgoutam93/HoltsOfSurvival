@@ -8,10 +8,10 @@ enum Type {
 
 enum Building {
 	TOWN_HALL=0,
-	GOLD_COLLECTOR,
-	OIL_COLLECTOR,
-	GOLD_STORAGE,
-	OIL_STORAGE,
+	WOOD_MILL,
+	STONE_MINE,
+	WOOD_STORAGE,
+	STONE_STORAGE,
 	WALL
 }
 
@@ -41,12 +41,12 @@ const Buildings = {
 			},
 			"hitpoint": 200,
 			"capacity": {
-				"gold": 500,
-				"oil": 500,
+				"wood": 1000,
+				"stone": 1000,
 			},
 			"cost": {
 				"amount": 0,
-				"resource": "gold"
+				"resource": "wood"
 			},
 			"build_time": 0
 		},
@@ -56,14 +56,14 @@ const Buildings = {
 			},
 			"hitpoint": 400,
 			"capacity": {
-				"gold": 1000,
-				"oil": 1000,
+				"wood": 1500,
+				"stone": 1500,
 			},
 			"cost": {
-				"amount": 1000,
-				"resource": "gold"
+				"amount": 500,
+				"resource": "wood"
 			},
-			"build_time": 50
+			"build_time": 10
 		},
 		Level_3: {
 			"sprites": {
@@ -71,88 +71,92 @@ const Buildings = {
 			},
 			"hitpoint": 500,
 			"capacity": {
-				"gold": 1500,
-				"oil": 1500,
+				"wood": 2000,
+				"stone": 2000,
 			},
 			"cost": {
-				"amount": 1500,
-				"resource": "gold"
+				"amount": 750,
+				"resource": "wood"
 			},
-			"build_time": 50
+			"build_time": 30
 		},
 	},
-	Building.GOLD_COLLECTOR: {
+	Building.WOOD_MILL: {
 		"type": Type.RESOURCE,
-		"name": "Gold mine",
-		"icon": "res://assets/sprites/gold_collector/gold_mine_icon.png",
-		"scene": "res://scenes/Buldings/gold_collector/gold_collector.tscn",
+		"name": "Wood mill",
+		"icon": "res://assets/sprites/wood_mill/wood_mill_icon.png",
+		"scene": "res://scenes/Buldings/wood_mill/wood_mill.tscn",
 		"count": {
-			Level_1: 2,
-			Level_2: 3,
+			Level_1: 1,
+			Level_2: 2,
 			Level_3: 4
 		},
 		Level_1: {
 			"sprites": {
-				"idle": "res://assets/sprites/gold_collector/gold_mine_level_1.png"	
+				"idle": "res://assets/sprites/wood_mill/wood_mill_level_1.png"
 			},
 			"hitpoint": 80,
-			"capacity": 2000,
+			"capacity": 500,
+			"production": 200,
 			"townhall_required": 1,
 			"cost": {
 				"amount": 250,
-				"resource": "gold"
-			},
-			"build_time": 5
-		},
-		Level_2: {
-			"sprites": {
-				"idle": "res://assets/sprites/gold_collector/gold_mine_level_2.png"
-			},
-			"hitpoint": 120,
-			"capacity": 4000,
-			"townhall_required": 2,
-			"cost": {
-				"amount": 500,
-				"resource": "gold"
+				"resource": "wood"
 			},
 			"build_time": 10
 		},
+		Level_2: {
+			"sprites": {
+				"idle": "res://assets/sprites/wood_mill/wood_mill_level_2.png"
+			},
+			"hitpoint": 120,
+			"capacity": 1000,
+			"production": 400,
+			"townhall_required": 2,
+			"cost": {
+				"amount": 500,
+				"resource": "wood"
+			},
+			"build_time": 60
+		},
 	},
-	Building.OIL_COLLECTOR : {
+	Building.STONE_MINE: {
 		"type": Type.RESOURCE,
-		"name": "Oil collector",
-		"icon": "res://assets/sprites/oil_collector/oil_mine_icon.png",
-		"scene": "res://scenes/Buldings/oil_collector/oil_collector.tscn",
+		"name": "Stone mine",
+		"icon": "res://assets/sprites/stone_mine/stone_mine_icon.png",
+		"scene": "res://scenes/Buldings/stone_mine/stone_mine.tscn",
 		"count": {
-			Level_1: 2,
-			Level_2: 3,
+			Level_1: 1,
+			Level_2: 2,
 			Level_3: 4
 		},
 		Level_1: {
 			"sprites": {
-				"idle": "res://assets/sprites/oil_collector/oil_mine_level_1.png"
+				"idle": "res://assets/sprites/stone_mine/stone_mine_level_1.png"
 			},
 			"hitpoint": 80,
-			"capacity": 2000,
+			"capacity": 500,
+			"production": 1000,
 			"townhall_required": 1,
 			"cost": {
 				"amount": 250,
-				"resource": "gold"
+				"resource": "wood"
 			},
-			"build_time": 5
+			"build_time": 10
 		},
 		Level_2: {
 			"sprites": {
-				"idle": "res://assets/sprites/oil_collector/oil_mine_level_2.png"
+				"idle": "res://assets/sprites/stone_mine/stone_mine_level_2.png"
 			},
 			"hitpoint": 120,
-			"capacity": 4000,
+			"capacity": 1000,
+			"production": 2000,
 			"townhall_required": 2,
 			"cost": {
 				"amount": 500,
-				"resource": "gold"
+				"resource": "wood"
 			},
-			"build_time": 10
+			"build_time": 20
 		},
 	},
 	Building.WALL: {
@@ -175,8 +179,8 @@ const Buildings = {
 			"hitpoints": "50",
 			"townhall_required": 2,
 			"cost": {
-				"amount": 100,
-				"resource": "gold"
+				"amount": 50,
+				"resource": "wood"
 			},
 			"build_time": 0
 		},
@@ -190,29 +194,10 @@ const Buildings = {
 			"hitpoints": "80",
 			"townhall_required": 3,
 			"cost": {
-				"amount": 250,
-				"resource": "gold"
+				"amount": 100,
+				"resource": "wood"
 			},
 			"build_time": 0
 		},
 	}
 }
-
-const SAVE_GAME_PATH = "user://save.json"
-
-var _file = File.new()
-
-func save_exist():
-	return _file.file_exists(SAVE_GAME_PATH)
-
-func saveDictionary(var thing_to_save):
-	_file.open(SAVE_GAME_PATH, File.WRITE)
-	_file.store_string(to_json(thing_to_save))
-	_file.close()
-	
-func loadDictionary() -> Dictionary:
-	_file.open(SAVE_GAME_PATH, File.READ)
-	var theDict = parse_json(_file.get_as_text())
-	_file.close()
-	return theDict
-	

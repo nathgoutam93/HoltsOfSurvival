@@ -1,11 +1,11 @@
 extends Control
 
 enum resource {
-	GOLD,
-	OIL,
+	WOOD,
+	STONE,
 }
 
-export(resource) var resource_type = resource.GOLD
+export(resource) var resource_type = resource.WOOD
 var amount : int setget _set_amount, _get_amount
 var total_capacity : int setget _set_capacity, _get_capacity
 

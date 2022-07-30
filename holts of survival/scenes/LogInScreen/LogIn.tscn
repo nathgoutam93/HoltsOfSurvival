@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://theme/fonts/Main_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/LogInScreen/LogIn.gd" type="Script" id=2]
 [ext_resource path="res://theme/Button_Style.tres" type="StyleBox" id=3]
+[ext_resource path="res://theme/fonts/Main_font_24.tres" type="DynamicFont" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.054902, 0.0509804, 0.0509804, 1 )
@@ -15,6 +16,11 @@ corner_radius_bottom_left = 20
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.129412, 0.341176, 0.376471, 1 )
 
 [node name="title_label" type="Label" parent="."]
 anchor_left = 0.5
@@ -38,7 +44,7 @@ margin_left = -240.0
 margin_top = -190.0
 margin_right = 240.0
 margin_bottom = -130.0
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 4 )
 custom_styles/normal = SubResource( 1 )
 align = 1
 placeholder_text = "Usernmae"
@@ -53,7 +59,7 @@ margin_left = -240.0
 margin_top = -120.0
 margin_right = 240.0
 margin_bottom = -60.0
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 4 )
 custom_styles/normal = SubResource( 1 )
 align = 1
 secret = true

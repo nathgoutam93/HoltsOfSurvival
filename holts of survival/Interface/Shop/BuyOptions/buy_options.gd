@@ -19,7 +19,7 @@ func on_buy_complete():
 			GameManager.game.remove_child(get_parent())
 			GameManager.game.get_node("YSort").add_child(get_parent())
 			get_parent()._set_selectable(true)
-			get_parent().is_in_group("walls") && get_parent()._set_adj_walls()
+			get_parent().is_in_group("walls") && get_parent().set_adj_walls()
 			queue_free()
 		else:
 			on_buy_cancle()

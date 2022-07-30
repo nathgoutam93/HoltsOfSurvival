@@ -29,24 +29,31 @@ func _init_socket(access_token: String) -> void:
 func _init_player(value: Dictionary) -> void:
 	var player_instance = Player.new() 
 	
-	player_instance.name = value.username
-	player_instance.xp = value.xp
-	player_instance.trophy = value.trophy
-	player_instance.townhall = value.townhall
-	player_instance.buildings = parse_json(value.buildings) as Dictionary
-	player_instance.gold = value.gold
-	player_instance.oil = value.oil
+	player_instance._set_name(value.username)
+	player_instance._set_xp(value.xp)
+	player_instance._set_trophy(value.trophy) 
+	player_instance._set_townhall(value.townhall)
+	player_instance._set_wood(value.wood) 
+	player_instance._set_stone(value.stone)
+	player_instance._set_buildings(value.buildings) 
 
 	_set_player(player_instance)
 	
-#	get_tree().change_scene("res://scenes/Game/Game.tscn")
+	get_tree().change_scene("res://scenes/Game/Game.tscn")
 
 func _set_player(value : Player) -> void:
 	if value is Player:
 		player = value
 	else:
 		return
+	
+	if game == null:
+		return
+	else:
+		game.update_player()
 
+func _on_authenticate(data):
+	ws_emit("Authenticate", {"authorization": Auth.access_token})
 ##########################
 ######## WebSocket #######
 ##########################
@@ -66,11 +73,13 @@ func ws_listen(event: String, callback: FuncRef) -> void:
 func _connected(proto := "") -> void:
 	print("Connected with protocol: ", proto)
 	
+	ws_listen("Authenticate", funcref(self, "_on_authenticate"))
+	
 	ws_listen("player", funcref(self, "_init_player"))
 	
 	ws_listen("message", funcref(GDScript, "print"))
 	
-	ws_emit("player")
+#	ws_emit("player")
 
 func _on_data() -> void:
 	var data = ws_get()
@@ -89,10 +98,21 @@ func _closed(was_clean = false) -> void:
 	var alert = AcceptDialog.new()
 	alert.dialog_text = "You have lost Connection with the Server, Check your internet connection and try again"
 	alert.set_autowrap(true)
-	alert.connect("confirmed", self, "_restart")
-	alert.connect("modal_closed", self, "_restart")
+	alert.connect("confirmed", self, "restart")
+	alert.connect("modal_closed", self, "restart")
 	add_child(alert)
 	alert.popup_centered()
 
-func _restart():
+func restart():
+	game = null
+	hud = null
+	player = null
 	get_tree().change_scene("res://scenes/SplashScreen/SplashScreen.tscn")
+
+func close_socket_connection():
+	ws_client.disconnect("connection_closed", self, "_closed")
+	ws_client.disconnect("connection_error", self, "_closed")
+	ws_client.disconnect("connection_established", self, "_connected")
+	ws_client.disconnect("data_received", self, "_on_data")
+	
+	ws_client.disconnect_from_host()

@@ -33,7 +33,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.3 )
 }
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="Options" type="CanvasLayer"]
 script = ExtResource( 3 )
 
 [node name="Options" type="HBoxContainer" parent="."]
@@ -42,11 +42,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 30.0
 margin_bottom = 104.0
+mouse_filter = 2
 alignment = 1
 
 [node name="info" type="Button" parent="Options"]
-margin_left = 485.0
-margin_right = 599.0
+margin_left = 476.0
+margin_right = 596.0
 margin_bottom = 74.0
 mouse_default_cursor_shape = 2
 custom_fonts/font = ExtResource( 2 )
@@ -57,15 +58,15 @@ text = "info"
 icon = ExtResource( 6 )
 
 [node name="upgrade" type="Button" parent="Options"]
-margin_left = 603.0
-margin_right = 794.0
+margin_left = 600.0
+margin_right = 804.0
 margin_bottom = 74.0
 mouse_default_cursor_shape = 2
 custom_fonts/font = ExtResource( 2 )
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 1 )
 custom_styles/normal = ExtResource( 1 )
-text = "Upgrade"
+text = "upgrade"
 icon = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

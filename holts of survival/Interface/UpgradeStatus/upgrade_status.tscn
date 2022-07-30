@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Interface/UpgradeStatus/upgrade_status.gd" type="Script" id=1]
-[ext_resource path="res://theme/fonts/Main_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://theme/fonts/Main_font_24.tres" type="DynamicFont" id=2]
 
 [node name="UpgradeStatus" type="Label"]
 anchor_left = 0.5
