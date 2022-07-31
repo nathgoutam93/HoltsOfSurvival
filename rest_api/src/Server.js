@@ -2,21 +2,29 @@ import "dotenv/config";
 import express, { json } from "express";
 import { createServer } from "http";
 import cors from "cors";
+import { fileURLToPath } from "url";
+import path, { dirname } from "path";
 import { WebSocketServer } from "ws";
-import {
-  Authenticate,
-  authenticateToken,
-} from "./middleware/authenticateToken.js";
+import { Authenticate } from "./middleware/authenticateToken.js";
 import { router } from "./routes/api.route.js";
 import { getPlayerById, updatePlayerbyId } from "./prisma_utils.js";
 
 const PORT = process.env.PORT;
-
 const app = express();
+
 app.use(cors());
 app.use(json());
 
 const server = createServer(app);
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+app.use(express.static(path.join(__dirname, "HoltsOfSurvival")));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "HoltsOfSurvival", "index.html"));
+});
 
 app.use("/api", router);
 
