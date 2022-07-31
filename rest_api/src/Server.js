@@ -2,8 +2,6 @@ import "dotenv/config";
 import express, { json } from "express";
 import { createServer } from "http";
 import cors from "cors";
-import { fileURLToPath } from "url";
-import path, { dirname } from "path";
 import { WebSocketServer } from "ws";
 import { Authenticate } from "./middleware/authenticateToken.js";
 import { router } from "./routes/api.route.js";
@@ -16,15 +14,6 @@ app.use(cors());
 app.use(json());
 
 const server = createServer(app);
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-app.use(express.static(path.join(__dirname, "HoltsOfSurvival")));
-
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "HoltsOfSurvival", "index.html"));
-});
 
 app.use("/api", router);
 
@@ -46,7 +35,7 @@ wss.on("connection", function connection(ws, req) {
         updatePlayerbyId(req.user, data);
         break;
       case "Authenticate":
-        const authenticated = Authenticate(data.authorization, req);
+        const authenticated = Authenticate(data, req);
         if (!authenticated) return ws.close();
 
         const player = await getPlayerById(req.user);
@@ -57,7 +46,14 @@ wss.on("connection", function connection(ws, req) {
           })
         );
         break;
-
+      case "time":
+        const timestamp = Math.round(new Date().getTime() / 1000);
+        ws.send(
+          JSON.stringify({
+            event: "time",
+            data: timestamp,
+          })
+        );
       case "pong":
         ws.isAlive = true;
 
@@ -94,7 +90,7 @@ const interval = setInterval(() => {
       })
     );
   });
-}, 10000);
+}, 20000);
 
 wss.on("close", function close() {
   clearInterval(interval);
