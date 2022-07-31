@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Interface/HUD/Hud.gd" type="Script" id=1]
 [ext_resource path="res://Interface/ResourceCounters/stone_counter/stone_counter.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Interface/Shop/shop.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/sprites/UI/Btn01.png" type="Texture" id=5]
 [ext_resource path="res://theme/fonts/Main_font.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Interface/HelperPanel/helper_panel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/sprites/icons/icons8-info-48.png" type="Texture" id=8]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -66,5 +68,19 @@ text = "SHOP"
 align = 1
 valign = 1
 
+[node name="help_button" type="TextureButton" parent="."]
+margin_left = 23.0
+margin_top = 116.0
+margin_right = 71.0
+margin_bottom = 164.0
+texture_normal = ExtResource( 8 )
+
 [node name="shop" parent="." instance=ExtResource( 4 )]
 visible = false
+
+[node name="HelperPanel" parent="." instance=ExtResource( 7 )]
+visible = false
+margin_left = 3.0
+margin_top = 98.0
+margin_right = -963.0
+margin_bottom = -219.0

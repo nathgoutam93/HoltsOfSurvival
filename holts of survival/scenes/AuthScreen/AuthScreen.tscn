@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/AuthScreen/AuthScreen.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/hos_logo.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/UI/hos_logo.png" type="Texture" id=2]
 [ext_resource path="res://theme/fonts/Main_font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://theme/Button_Style.tres" type="StyleBox" id=4]
 

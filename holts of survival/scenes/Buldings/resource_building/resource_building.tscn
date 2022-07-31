@@ -40,9 +40,7 @@ material = SubResource( 2 )
 position = Vector2( -60, -74 )
 texture = ExtResource( 5 )
 
-[node name="Timer" type="Timer" parent="." index="5"]
-
-[node name="notify" parent="." index="6" instance=ExtResource( 11 )]
+[node name="notify" parent="." index="5" instance=ExtResource( 11 )]
 visible = false
 margin_top = -114.0
 margin_bottom = -50.0

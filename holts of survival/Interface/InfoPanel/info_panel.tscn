@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/sprites/UI/Msg20.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/townhall/townhall_level_2.png" type="Texture" id=2]
 [ext_resource path="res://Interface/InfoPanel/info_panel.gd" type="Script" id=3]
 [ext_resource path="res://theme/fonts/Main_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://theme/fonts/Main_font_24.tres" type="DynamicFont" id=5]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 1 )
@@ -42,7 +43,7 @@ margin_right = -43.0
 margin_bottom = -42.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
-margin_right = 815.0
+margin_right = 764.0
 margin_bottom = 256.0
 
 [node name="icon" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer"]
@@ -50,16 +51,33 @@ margin_right = 256.0
 margin_bottom = 256.0
 texture = ExtResource( 2 )
 
-[node name="stats" type="VBoxContainer" parent="Control/VBoxContainer/HBoxContainer"]
+[node name="info" type="VBoxContainer" parent="Control/VBoxContainer/HBoxContainer"]
 margin_left = 260.0
-margin_right = 815.0
+margin_right = 764.0
 margin_bottom = 256.0
 size_flags_horizontal = 3
+custom_constants/separation = 30
 
-[node name="name" type="Label" parent="Control/VBoxContainer/HBoxContainer/stats"]
-margin_right = 555.0
+[node name="name" type="Label" parent="Control/VBoxContainer/HBoxContainer/info"]
+margin_right = 504.0
 margin_bottom = 40.0
 custom_fonts/font = ExtResource( 4 )
-text = "Townhall Level 2"
+text = "Townhall (level 2)"
 align = 1
 valign = 1
+
+[node name="stats" type="VBoxContainer" parent="Control/VBoxContainer/HBoxContainer/info"]
+margin_top = 70.0
+margin_right = 504.0
+margin_bottom = 70.0
+
+[node name="description" type="Label" parent="Control/VBoxContainer"]
+margin_top = 260.0
+margin_right = 764.0
+margin_bottom = 360.0
+rect_min_size = Vector2( 700, 100 )
+custom_fonts/font = ExtResource( 5 )
+text = "hreart of the your village, upgrading your townhall unlocks new buildings"
+align = 1
+valign = 1
+autowrap = true

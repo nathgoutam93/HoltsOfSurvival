@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Interface/Shop/shop.gd" type="Script" id=1]
-[ext_resource path="res://theme/fonts/secondary_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://theme/fonts/Main_font_28.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/sprites/UI/Msg20.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/UI/Icon85.png" type="Texture" id=4]
 
@@ -77,6 +77,7 @@ size_flags_vertical = 3
 [node name="HScrollBar" type="HScrollBar" parent="Control/VBoxContainer"]
 margin_right = 1145.0
 custom_styles/scroll = SubResource( 2 )
+max_value = 1.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer/HScrollBar"]
 anchor_right = 1.0

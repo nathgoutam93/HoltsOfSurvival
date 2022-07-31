@@ -6,7 +6,7 @@ export var Options : PackedScene = preload("res://Interface/BuildingOptions/base
 
 var InfoPanel = preload("res://Interface/InfoPanel/info_panel.tscn")
 var UpgradePanel = preload("res://Interface/UpgradePanel/upgrade_panel.tscn")
-var BuildingInfo = preload("res://Interface/BuildingInfo.tscn")
+var BuildingInfo = preload("res://Interface/BuildingInfo/BuildingInfo.tscn")
 var MessageLabel = preload("res://Interface/ShowMessage/show_message.tscn")
 var SelectSound = preload("res://assets/sounds/select.wav")
 var UpgradeSound = preload("res://assets/sounds/upgrade.wav")
@@ -22,11 +22,10 @@ var _id : String
 var _class : int
 var _level : int 
 var _pos : Vector2
-var _upgrade = {
-	"status": false,
-	"start": 0,
-	"end": 0
-}
+
+onready var _upgrade = GameManager.player.buildings[_id].upgrade 
+
+# _ugrade = {"status": false,"start": 0,"end": 0}
 
 export var _tiles : int = 1
 onready var _boundaries := Constants.Boundaries

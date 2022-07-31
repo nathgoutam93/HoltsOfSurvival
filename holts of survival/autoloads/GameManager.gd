@@ -4,7 +4,7 @@ var game = null
 var hud = null
 var player = null setget _set_player
 
-const ws_url = "ws://localhost:3000/api/"
+const ws_url = "wss://holtsofsurvival.herokuapp.com/api/"
 var ws_client = WebSocketClient.new()
 var ws_listners = {}
 
@@ -20,8 +20,9 @@ func _init_socket(access_token: String) -> void:
 	ws_client.connect("connection_established", self, "_connected")
 	ws_client.connect("data_received", self, "_on_data")
 	
-	var header = "Authorization: %s" % access_token
-	var err = ws_client.connect_to_url(ws_url, [], false, [header])
+#	var header = "Authorization: %s" % access_token
+#	var err = ws_client.connect_to_url(ws_url, [], false, [header])
+	var err = ws_client.connect_to_url(ws_url, [], false)
 	if err != OK:
 		print("Unable to connect")
 		set_process(false)
@@ -52,16 +53,20 @@ func _set_player(value : Player) -> void:
 	else:
 		game.update_player()
 
-func _on_authenticate(data):
-	ws_emit("Authenticate", {"authorization": Auth.access_token})
+	
 ##########################
 ######## WebSocket #######
 ##########################
+func _on_ping(data):
+	ws_emit("pong", "")
+
+func _on_authenticate(data):
+	ws_emit("Authenticate", Auth.access_token)
 
 func ws_get() -> Dictionary:
 	return parse_json(ws_client.get_peer(1).get_packet().get_string_from_utf8())
 
-func ws_emit(event: String , data = {} ) -> void:
+func ws_emit(event: String , data) -> void:
 	ws_client.get_peer(1).put_packet(to_json({
 		"event": event,
 		"data": data
@@ -73,13 +78,15 @@ func ws_listen(event: String, callback: FuncRef) -> void:
 func _connected(proto := "") -> void:
 	print("Connected with protocol: ", proto)
 	
+	ws_listen("ping", funcref(self, "_on_ping"))
+	
 	ws_listen("Authenticate", funcref(self, "_on_authenticate"))
+	
+	ws_listen("time", funcref(TimeManager, "set_time"))
 	
 	ws_listen("player", funcref(self, "_init_player"))
 	
 	ws_listen("message", funcref(GDScript, "print"))
-	
-#	ws_emit("player")
 
 func _on_data() -> void:
 	var data = ws_get()
@@ -97,16 +104,12 @@ func _closed(was_clean = false) -> void:
 	
 	var alert = AcceptDialog.new()
 	alert.dialog_text = "You have lost Connection with the Server, Check your internet connection and try again"
-	alert.set_autowrap(true)
 	alert.connect("confirmed", self, "restart")
 	alert.connect("modal_closed", self, "restart")
-	add_child(alert)
+	hud.add_child(alert)
 	alert.popup_centered()
 
 func restart():
-	game = null
-	hud = null
-	player = null
 	get_tree().change_scene("res://scenes/SplashScreen/SplashScreen.tscn")
 
 func close_socket_connection():

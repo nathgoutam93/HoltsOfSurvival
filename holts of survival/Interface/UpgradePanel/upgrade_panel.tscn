@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/sprites/townhall/townhall_level_2.png" type="Texture" id=2]
 [ext_resource path="res://theme/Button_Style.tres" type="StyleBox" id=3]
 [ext_resource path="res://theme/fonts/Main_font.tres" type="DynamicFont" id=4]
-[ext_resource path="res://assets/sprites/icons/gold.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/icons/wood_icon_64.png" type="Texture" id=5]
 [ext_resource path="res://Interface/UpgradePanel/upgrade_panel.gd" type="Script" id=6]
 [ext_resource path="res://theme/fonts/Main_font_24.tres" type="DynamicFont" id=7]
 
@@ -82,19 +82,24 @@ text = "10sec"
 align = 1
 valign = 1
 
-[node name="stats" type="VBoxContainer" parent="Control/VBoxContainer/HBoxContainer"]
+[node name="info" type="VBoxContainer" parent="Control/VBoxContainer/HBoxContainer"]
 margin_left = 260.0
 margin_right = 764.0
 margin_bottom = 324.0
 size_flags_horizontal = 3
 
-[node name="name" type="Label" parent="Control/VBoxContainer/HBoxContainer/stats"]
+[node name="name" type="Label" parent="Control/VBoxContainer/HBoxContainer/info"]
 margin_right = 504.0
 margin_bottom = 40.0
 custom_fonts/font = ExtResource( 4 )
 text = "Townhall Level 2"
 align = 1
 valign = 1
+
+[node name="stats" type="VBoxContainer" parent="Control/VBoxContainer/HBoxContainer/info"]
+margin_top = 44.0
+margin_right = 504.0
+margin_bottom = 44.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Control/VBoxContainer"]
 margin_top = 328.0

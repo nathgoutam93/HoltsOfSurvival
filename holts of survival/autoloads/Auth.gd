@@ -1,7 +1,7 @@
 extends Node
 
-const LOG_IN_URL = "http://localhost:3000/api/signin"
-const SIGN_UP_URL = "http://localhost:3000/api/signup"
+const LOG_IN_URL = "https://holtsofsurvival.herokuapp.com/api/signin"
+const SIGN_UP_URL = "https://holtsofsurvival.herokuapp.com/api/signup"
 
 var access_token := "" setget _set_access_token
 

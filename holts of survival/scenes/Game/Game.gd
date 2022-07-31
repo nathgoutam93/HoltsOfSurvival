@@ -25,6 +25,7 @@ func _ready():
 #		},
 #	}
 #	GameManager.player = player
+	GameManager.ws_emit("time","")
 	GameManager.game = self
 	GameManager.hud._set_counters()
 	GameManager.player.connect("wood_change", GameManager.hud, "_on_wood_change")
@@ -53,7 +54,6 @@ func _spawn_building(building):
 	b_instance._class = building.class
 	b_instance._level = building.level
 	b_instance._pos = Vector2(building.pos.x, building.pos.y)
-	b_instance._upgrade = building.upgrade
 	b_instance.grid = $Ground
 	b_instance.connect("select", self, "_on_select")
 	return b_instance

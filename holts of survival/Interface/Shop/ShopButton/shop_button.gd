@@ -11,7 +11,7 @@ var _class : int = 0
 func _ready():
 	$VBoxContainer/HBoxContainer/cost_amount.text = str(Constants.Buildings[_class][Constants.Level_1].cost.amount)
 	$VBoxContainer/building_icon/count.text = str(GameManager.player._get_building_count(_class)) + "/" + str(Constants.Buildings[_class].count[GameManager.player.townhall])
-	$VBoxContainer/HBoxContainer/cost_resource.texture = load("res://assets/sprites/icons/{resource}.png".format({"resource": Constants.Buildings[_class][Constants.Level_1].cost.resource}))
+	$VBoxContainer/HBoxContainer/cost_resource.texture = load("res://assets/sprites/icons/{resource}_icon_64.png".format({"resource": Constants.Buildings[_class][Constants.Level_1].cost.resource}))
 
 func _pressed():
 	
@@ -39,10 +39,18 @@ func _pressed():
 			"end": 0
 		}
 	}
+	
+	if Constants.Buildings[_class].type == Constants.Type.RESOURCE:
+		building["resource"] = { 
+			"full": false,
+			"current_fill": 0.0,
+			"last_produced": TimeManager.get_time()
+		}
+	
+	GameManager.player.buildings[_id] = building
 	var b_instance = GameManager.game._spawn_building(building)
 	GameManager.game.add_child(b_instance)
 	b_instance._set_is_moveable(b_instance.check_moveability())
-	GameManager.player.buildings[_id] = building
 	var buy_option_instance = buy_options.instance()
 	b_instance.add_child(buy_option_instance)
 	emit_signal("bought")

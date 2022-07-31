@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/sprites/UI/Msg20.png" type="Texture" id=1]
+[ext_resource path="res://theme/fonts/Main_font_24.tres" type="DynamicFont" id=2]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 500, 389 )
+margin_left = 50.6485
+margin_right = 33.1163
+margin_top = 46.7275
+margin_bottom = 40.9084
+
+[node name="HelperPanel" type="PopupPanel"]
+visible = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 59.0
+margin_top = 40.0
+margin_right = -907.0
+margin_bottom = -277.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -127.0
+margin_top = -122.5
+margin_right = 128.0
+margin_bottom = 174.5
+custom_constants/separation = 20
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+margin_right = 255.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 2 )
+text = "AWSD to pan"
+
+[node name="Label2" type="Label" parent="Control/VBoxContainer"]
+margin_top = 50.0
+margin_right = 255.0
+margin_bottom = 80.0
+custom_fonts/font = ExtResource( 2 )
+text = "Scroll to zoom in/out"
+
+[node name="Label3" type="Label" parent="Control/VBoxContainer"]
+margin_top = 100.0
+margin_right = 255.0
+margin_bottom = 130.0
+custom_fonts/font = ExtResource( 2 )
+text = "Click to select"
+
+[node name="Label4" type="Label" parent="Control/VBoxContainer"]
+margin_top = 150.0
+margin_right = 255.0
+margin_bottom = 213.0
+custom_fonts/font = ExtResource( 2 )
+text = "Select and Drag to move"
+autowrap = true
