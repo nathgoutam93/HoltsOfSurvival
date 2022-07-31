@@ -36,6 +36,8 @@ const wss = new WebSocketServer({
 });
 
 wss.on("connection", function connection(ws, req) {
+  ws.isAlive = true;
+
   ws.on("message", async function message(received_data) {
     const { event, data } = JSON.parse(received_data);
 
@@ -55,6 +57,10 @@ wss.on("connection", function connection(ws, req) {
           })
         );
         break;
+
+      case "pong":
+        ws.isAlive = true;
+
       case "message":
         console.log(data);
         break;
@@ -73,6 +79,25 @@ wss.on("connection", function connection(ws, req) {
   ws.on("close", (code, reason) => {
     console.log(`${req.user} dissconnected, reason: ${code}`);
   });
+});
+
+const interval = setInterval(() => {
+  wss.clients.forEach((ws) => {
+    if (ws.isAlive === false) return ws.terminate();
+
+    ws.isAlive = false;
+
+    ws.send(
+      JSON.stringify({
+        event: "ping",
+        data: "",
+      })
+    );
+  });
+}, 10000);
+
+wss.on("close", function close() {
+  clearInterval(interval);
 });
 
 app.use((error, req, res, next) => {
