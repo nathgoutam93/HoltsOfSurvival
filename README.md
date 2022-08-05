@@ -1,4 +1,4 @@
-# Holts Of Survival
+# Holts Of Survival 🦊
 
 A Real-Time strategy game, where you play as a chief, build and maintain your Village to grow. 
 
@@ -10,14 +10,14 @@ The game usage Godot as game engine and node.js/express as API
 
 Game Demo: [holtsofsurvival.netlify.app](https://holtsofsurvival.netlify.app/)
 
-## Installation Steps for the Server
+## Server setup ⚙
 1. fork the project
 2. clone the project
 3. Navigate to the project directory `cd hashnode_pscale_hackathone/rest_api`
 4. install dependencies with `npm install`
 5. Run with `npm start`
 
-## Godot project setup
+## Godot project setup ⚙
 > Download Godot from [godotengine.org](https://godotengine.org/download)
 1. fork the project
 2. clone the project
@@ -30,6 +30,8 @@ Game Demo: [holtsofsurvival.netlify.app](https://holtsofsurvival.netlify.app/)
 9. Make sure `SplashScreen.tscn` is set to main scene
 10. Click on Play.
 
-## Contributing
-Contributions are greatly appreciated.
-- Check out our [contribution guidelines](/CONTRIBUTING.md) for more information.
+## Contributing ✨
+Contributions are greatly appreciated. Check out our [contribution guidelines](/CONTRIBUTING.md) for more information.
+
+## License 🛡
+HoltsOfSurvival is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
