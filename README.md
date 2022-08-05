@@ -31,7 +31,7 @@ Game Demo: [holtsofsurvival.netlify.app](https://holtsofsurvival.netlify.app/)
 10. Click on Play.
 
 ## Contributing ✨
-Contributions are greatly appreciated. Check out our [contribution guidelines](/CONTRIBUTING.md) for more information.
+Contributions are greatly appreciated.
 
 ## License 🛡
 HoltsOfSurvival is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
