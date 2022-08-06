@@ -23,8 +23,9 @@ func _ready():
 		_resource.last_produced = TimeManager.get_time()
 		if _resource.current_fill >= max_fill:
 			_resource.full = true
-		elif _resource.current_fill >= _notify_rate:
-			$notify.set_visible(true)
+	
+	if _resource.current_fill >= _notify_rate:
+		$notify.set_visible(true)
 
 	start_producing()
 
@@ -43,10 +44,12 @@ func produce_resource():
 	if not _resource.full:
 		_resource.current_fill = clamp(_resource.current_fill + _production_rate, 0.0, max_fill)
 		_resource.last_produced = TimeManager.get_time()
+
+		if _resource.current_fill >= _notify_rate:
+			$notify.set_visible(true)
+		
 		if _resource.current_fill >= max_fill:
 			_resource.full = true
-		elif _resource.current_fill >= _notify_rate:
-			$notify.set_visible(true)
 
 func update_resource():
 	if GameManager.player.buildings[_id].resource.hash() != _resource.hash():

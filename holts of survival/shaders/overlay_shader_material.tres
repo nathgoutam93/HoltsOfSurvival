@@ -5,5 +5,5 @@
 [resource]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
-shader_param/color = Color( 0, 1, 0, 1 )
+shader_param/color = Color( 1, 1, 1, 1 )
 shader_param/overlay = false

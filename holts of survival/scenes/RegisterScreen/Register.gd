@@ -20,7 +20,10 @@ func _sign_up():
 func _sign_up_completed(result, response_code, headers, body):
 	var response_body = JSON.parse(body.get_string_from_utf8()).result
 	if response_code != 200:
-		$notification.text = response_body.error.message
+		if response_body != null:
+			$notification.text = response_body.error.message
+		else:
+			$notification.text = "failed to connect"
 	else: 
 		$notification.text = "User Registered Successfully"
 		yield(get_tree().create_timer(1.0), "timeout")

@@ -20,12 +20,12 @@ shader_param/pulsing = false
 [node name="Building" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 
-[node name="Tile" parent="." index="1"]
+[node name="Tile" parent="." index="0"]
 material = SubResource( 1 )
 
-[node name="Sprite" parent="." index="3"]
+[node name="Sprite" parent="." index="2"]
 material = SubResource( 2 )
-position = Vector2( -32, -26 )
+position = Vector2( -65, -50 )
 texture = ExtResource( 5 )
 
 [node name="ray_top" type="RayCast2D" parent="." index="4"]
@@ -54,5 +54,3 @@ rotation = 1.0472
 enabled = true
 cast_to = Vector2( 0, 30 )
 collide_with_areas = true
-
-[editable path="Options"]

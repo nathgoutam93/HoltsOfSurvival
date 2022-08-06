@@ -6,12 +6,13 @@
 [node name="UpgradeStatus" type="Label"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -48.0
-margin_top = -60.0
-margin_right = 48.0
+margin_left = -150.0
+margin_top = -50.0
+margin_right = 150.0
 margin_bottom = -20.0
+rect_min_size = Vector2( 300, 0 )
 custom_fonts/font = ExtResource( 2 )
-text = "60 sec"
+text = "2 day 23 h 59 m 59 s"
 align = 1
 valign = 1
 script = ExtResource( 1 )

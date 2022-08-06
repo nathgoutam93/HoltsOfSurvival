@@ -54,7 +54,7 @@ func _spawn_building(building):
 	b_instance._class = building.class
 	b_instance._level = building.level
 	b_instance._pos = Vector2(building.pos.x, building.pos.y)
-	b_instance.grid = $Ground
+	b_instance.grid = $ground
 	b_instance.connect("select", self, "_on_select")
 	return b_instance
 

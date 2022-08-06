@@ -5,9 +5,6 @@ func _ready():
 	$shop_button.connect("pressed", self, "_open_shop")
 	$help_button.connect("pressed", self, "_on_help")
 
-func _process(delta):
-	$Label.text = "FPS: " + String(Engine.get_frames_per_second())
-
 func _on_wood_change():
 	$resources/gold_counter._set_amount(GameManager.player._get_wood())
 

@@ -144,30 +144,34 @@ func _on_info_panel():
 	GameManager.hud.add_child(info_panel)
 
 func _on_upgrade_panel():
-	var upgrade_panel = UpgradePanel.instance()
-	upgrade_panel._class = _class
-	upgrade_panel.level_to_upgrade = _level + 1
-	upgrade_panel.connect("upgrade_confirm", self, "upgrade_level")
-	hide_options()
-	GameManager.hud.add_child(upgrade_panel)
-
-func upgrade_level() -> void:
 	var level_to_upgrade = _level + 1
 	if not Constants.Buildings[_class].has(level_to_upgrade):
 		var message_label = MessageLabel.instance()
 		message_label.set_message("Nothing to Upgrade")
 		GameManager.hud.add_child(message_label)
 	else:
-		if is_able_to_upgrade(level_to_upgrade):
-			var upgrade_cost = Constants.Buildings[_class][level_to_upgrade].cost
-			var success = deduct_resource(upgrade_cost.resource, upgrade_cost.amount)
-			
-			if success:
+		var upgrade_panel = UpgradePanel.instance()
+		upgrade_panel._class = _class
+		upgrade_panel.level_to_upgrade = level_to_upgrade
+		upgrade_panel.connect("upgrade_confirm", self, "upgrade_level")
+		hide_options()
+		GameManager.hud.add_child(upgrade_panel)
+
+func upgrade_level() -> void:
+	var level_to_upgrade = _level + 1
+	if is_able_to_upgrade(level_to_upgrade):
+		var upgrade_cost = Constants.Buildings[_class][level_to_upgrade].cost
+		var success = deduct_resource(upgrade_cost.resource, upgrade_cost.amount)
+		
+		if success:
+			if Constants.Buildings[_class][level_to_upgrade].build_time > 0:
 				_upgrade.status = true
 				_upgrade.start = TimeManager.get_time()
 				_upgrade.end = _upgrade.start + Constants.Buildings[_class][level_to_upgrade].build_time
 			
 				add_upgrade_label()
+			else:
+				upgrade_complete()
 
 func is_able_to_upgrade(level_to_upgrade) -> bool:
 	var townhall_required = Constants.Buildings[_class][level_to_upgrade].townhall_required
@@ -204,11 +208,12 @@ func remove_upgrade_label():
 	get_node("UpgradeStatus").queue_free()
 
 func upgrade_complete():
-	_upgrade.status = false
-	_upgrade.start = 0
-	_upgrade.end = 0
+	if _upgrade.status:
+		_upgrade.status = false
+		_upgrade.start = 0
+		_upgrade.end = 0
+		remove_upgrade_label()
 	_level += 1
-	remove_upgrade_label()
 	update_level()
 	play_sound(UpgradeSound)
 	set_sprite()
@@ -227,6 +232,11 @@ func update_level():
 
 func _set_edit(value: bool) -> void:
 	edit = value
+	
+	var color = Color(1,1,1,1)
+	if not edit:
+		color.a = 0
+	$Tile.material.set_shader_param("color", color)
 
 func _set_selectable(value: bool):
 	is_selectable = value
@@ -234,7 +244,7 @@ func _set_selectable(value: bool):
 func _set_is_moveable(value: bool) -> void:
 	is_moveable = value
 	
-	var color := Color(0, 1, 0, 1) if value else Color(1, 0, 0, 1)
+	var color := Color(1, 1, 1, 1) if value else Color(1, 0, 0, 1)
 	$Tile.material.set_shader_param("color", color)
 
 func play_sound(sound: AudioStream):

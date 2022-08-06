@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Msg20.png-5c6a56c65f5b6fbba995861e2265a13b.stex"
+path="res://.import/ground4.png-1bb788444178ee8c587800ad95f10b03.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/UI/Msg20.png"
-dest_files=[ "res://.import/Msg20.png-5c6a56c65f5b6fbba995861e2265a13b.stex" ]
+source_file="res://tilesets/ground4.png"
+dest_files=[ "res://.import/ground4.png-1bb788444178ee8c587800ad95f10b03.stex" ]
 
 [params]
 

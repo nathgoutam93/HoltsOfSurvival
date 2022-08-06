@@ -64,7 +64,7 @@ const Buildings = {
 				"amount": 500,
 				"resource": "wood"
 			},
-			"build_time": 60 * 5
+			"build_time": 60 * 15
 		},
 		Level_3: {
 			"sprites": {
@@ -79,7 +79,7 @@ const Buildings = {
 				"amount": 750,
 				"resource": "stone"
 			},
-			"build_time": 60 * 60 * 3
+			"build_time": 60 * 60 * 2
 		},
 	},
 	Building.WOOD_MILL: {
@@ -159,7 +159,7 @@ const Buildings = {
 				"amount": 400,
 				"resource": "wood"
 			},
-			"build_time": 20
+			"build_time": 60 * 2
 		},
 	},
 	Building.WALL: {
@@ -198,7 +198,7 @@ const Buildings = {
 			"hitpoints": "200",
 			"townhall_required": 3,
 			"cost": {
-				"amount": 75,
+				"amount": 25,
 				"resource": "stone"
 			},
 			"build_time": 0

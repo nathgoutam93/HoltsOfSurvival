@@ -20,6 +20,9 @@ func _log_in():
 func _log_in_completed(result, response_code, headers, body):
 	var response_body = parse_json(body.get_string_from_utf8())
 	if response_code != 200:
-		$notification.text = response_body.error.message
+		if response_body != null:
+			$notification.text = response_body.error.message
+		else:
+			$notification.text = "failed to connect"
 	else:
 		$notification.text = "Logged In Successfully"

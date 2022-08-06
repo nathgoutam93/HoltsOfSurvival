@@ -2,12 +2,12 @@
 
 [ext_resource path="res://Interface/Shop/shop.gd" type="Script" id=1]
 [ext_resource path="res://theme/fonts/Main_font_28.tres" type="DynamicFont" id=2]
-[ext_resource path="res://assets/sprites/UI/Msg20.png" type="Texture" id=3]
-[ext_resource path="res://assets/sprites/UI/Icon85.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/UI/Msg18.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/UI/Icon28.png" type="Texture" id=4]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 3 )
-region_rect = Rect2( 7.15652, -2.55254, 488.418, 397.498 )
+region_rect = Rect2( 0, 0, 500, 389 )
 margin_left = 24.2105
 margin_right = 27.3684
 margin_top = 61.3869

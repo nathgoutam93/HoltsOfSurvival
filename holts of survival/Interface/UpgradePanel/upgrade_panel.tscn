@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://assets/sprites/UI/Msg20.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/UI/Msg18.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/townhall/townhall_level_2.png" type="Texture" id=2]
 [ext_resource path="res://theme/Button_Style.tres" type="StyleBox" id=3]
 [ext_resource path="res://theme/fonts/Main_font.tres" type="DynamicFont" id=4]
@@ -17,7 +17,6 @@ margin_top = 35.4313
 margin_bottom = 22.3169
 
 [node name="UpgradePanel" type="PopupPanel"]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

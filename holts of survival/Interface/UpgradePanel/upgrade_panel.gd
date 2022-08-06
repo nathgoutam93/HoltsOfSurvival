@@ -10,8 +10,9 @@ var level_to_upgrade : int
 func _ready():
 	popup()
 	connect("popup_hide", self, "_on_popup_hide")
+	
 	$Control/VBoxContainer/HBoxContainer/VBoxContainer/icon.texture = load(Constants.Buildings[_class][level_to_upgrade].sprites.idle)
-	$Control/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/upgrade_time.text = "{time} sec".format({"time": Constants.Buildings[_class][level_to_upgrade].build_time})
+	$Control/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/upgrade_time.text = TimeManager.formatSeconds(Constants.Buildings[_class][level_to_upgrade].build_time)
 	$Control/VBoxContainer/HBoxContainer/info/name.text = "{name} (level {level})".format({"name": Constants.Buildings[_class].name,"level": level_to_upgrade})
 	$Control/VBoxContainer/HBoxContainer2/upgrade_button.icon = load("res://assets/sprites/icons/{resource}_icon_64.png".format({"resource": Constants.Buildings[_class][level_to_upgrade].cost.resource}))
 	$Control/VBoxContainer/HBoxContainer2/upgrade_button.text = str(Constants.Buildings[_class][level_to_upgrade].cost.amount)
@@ -56,3 +57,4 @@ func _on_popup_hide():
 
 func on_upgrade():
 	emit_signal("upgrade_confirm")
+	hide()
