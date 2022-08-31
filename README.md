@@ -13,7 +13,7 @@ Game Demo: [holtsofsurvival.netlify.app](https://holtsofsurvival.netlify.app/)
 ## Server setup ⚙
 1. fork the project
 2. clone the project
-3. Navigate to the project directory `cd hashnode_pscale_hackathone/rest_api`
+3. Navigate to the project directory `cd HoltsOfSurvival/rest_api`
 4. install dependencies with `npm install`
 5. Run with `npm start`
 
@@ -22,7 +22,7 @@ Game Demo: [holtsofsurvival.netlify.app](https://holtsofsurvival.netlify.app/)
 1. fork the project
 2. clone the project
 3. open Godot and Click on `Import`
-4. Browse to the cloned directory and select `hashnode_pscale_hackathone/holts of survival`
+4. Browse to the cloned directory and select `HoltsOfSurvival/holts of survival`
 5. click import and edit
 6. Open `Auth.gd` file
 7. Change `LOG_IN_URL` to `http://localhost:3000/api/signin`
